@@ -1,0 +1,29 @@
+version: '3.6'
+
+networks:
+  bridge:
+    driver: bridge
+
+services:
+  cassandra:
+    image: cassandra:3.11
+    environment:
+      CASSANDRA_START_RPC: "true"
+      CASSANDRA_CLUSTER_NAME: cassandra
+    networks:
+      bridge:
+        aliases:
+        - cassandra
+
+  java:
+    image: cassandra-jpa-example
+    depends_on:
+    - cassandra
+    environment:
+      EXAMPLE_CASSANDRA_HOST: "cassandra"
+      EXAMPLE_CASSANDRA_PORT: "9160"
+      EXAMPLE_REQUEST_WAIT: 3
+      EXAMPLE_ITERATIONS: 1000
+      EXAMPLE_REPETITIONS: 5
+    networks:
+    - bridge
