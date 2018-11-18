@@ -27,7 +27,7 @@ public class Commons {
             System.getenv("EXAMPLE_CASSANDRA_PORT") : "9160";
 
     public final static long EXAMPLE_REQUEST_WAIT = System.getenv("EXAMPLE_REQUEST_WAIT") != null ?
-            Long.parseLong(System.getenv("EXAMPLE_REQUEST_WAIT")) : 2;
+            Long.parseLong(System.getenv("EXAMPLE_REQUEST_WAIT")) : 3;
 
     public static List<UUID> generateUUIDs() {
         List<UUID> uuids = new ArrayList<>();

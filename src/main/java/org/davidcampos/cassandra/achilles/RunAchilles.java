@@ -105,6 +105,28 @@ public class RunAchilles extends Run {
     }
 
     @Override
+    public StopWatch update(int repetition) throws InterruptedException {
+        StopWatch stopwatch = new StopWatch();
+
+        for (int i = 0; i < Commons.ITERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+            UserAchilles user = users.get(uuid);
+            user.setFirstName(user.getFirstName() + "___u");
+            user.setLastName(user.getLastName() + "___u");
+            user.setCity(user.getCity() + "___u");
+
+            Commons.resumeOrStartStopWatch(stopwatch);
+            manager.crud().update(user).execute();
+            stopwatch.suspend();
+
+            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+        }
+
+        stopwatch.stop();
+        return stopwatch;
+    }
+
+    @Override
     public StopWatch delete(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 

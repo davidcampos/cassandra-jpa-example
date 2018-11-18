@@ -3,10 +3,7 @@ package org.davidcampos.cassandra.datastax_native;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Session;
-import com.datastax.driver.core.querybuilder.Delete;
-import com.datastax.driver.core.querybuilder.Insert;
-import com.datastax.driver.core.querybuilder.QueryBuilder;
-import com.datastax.driver.core.querybuilder.Select;
+import com.datastax.driver.core.querybuilder.*;
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.logging.log4j.LogManager;
 import org.davidcampos.cassandra.commons.Commons;
@@ -94,6 +91,31 @@ public class RunDatastaxNative extends Run {
 
             Commons.resumeOrStartStopWatch(stopwatch);
             ResultSet rs = session.execute(select);
+            stopwatch.suspend();
+
+            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+        }
+
+        stopwatch.stop();
+        return stopwatch;
+    }
+
+    @Override
+    public StopWatch update(int repetition) throws InterruptedException {
+        StopWatch stopwatch = new StopWatch();
+
+        for (int i = 0; i < Commons.ITERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+
+            Update.Where update = QueryBuilder
+                    .update("example", "user")
+                    .with(QueryBuilder.set("first_name", "___u"))
+                    .and(QueryBuilder.set("last_name", "___u"))
+                    .and(QueryBuilder.set("city", "___u"))
+                    .where(QueryBuilder.eq("id", uuid));
+
+            Commons.resumeOrStartStopWatch(stopwatch);
+            ResultSet rs = session.execute(update);
             stopwatch.suspend();
 
             Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
