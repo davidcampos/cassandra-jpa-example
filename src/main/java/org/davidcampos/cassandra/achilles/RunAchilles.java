@@ -79,7 +79,9 @@ public class RunAchilles extends Run {
                     .execute();
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -97,7 +99,9 @@ public class RunAchilles extends Run {
             UserAchilles user = manager.crud().findById(uuid).get();
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -119,7 +123,9 @@ public class RunAchilles extends Run {
             manager.crud().update(user).execute();
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -138,7 +144,9 @@ public class RunAchilles extends Run {
             manager.crud().delete(user).execute();
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();

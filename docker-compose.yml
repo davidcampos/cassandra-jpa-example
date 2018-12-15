@@ -22,8 +22,8 @@ services:
     environment:
       EXAMPLE_CASSANDRA_HOST: "cassandra"
       EXAMPLE_CASSANDRA_PORT: "9160"
-      EXAMPLE_REQUEST_WAIT: 3
-      EXAMPLE_ITERATIONS: 5000
-      EXAMPLE_REPETITIONS: 5
+      EXAMPLE_REQUEST_WAIT: 0
+      EXAMPLE_ITERATIONS: 10000
+      EXAMPLE_REPETITIONS: 3
     networks:
     - bridge

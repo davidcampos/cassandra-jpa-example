@@ -70,7 +70,9 @@ public class RunDatastaxNative extends Run {
             session.execute(insert);
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -93,7 +95,9 @@ public class RunDatastaxNative extends Run {
             ResultSet rs = session.execute(select);
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -118,7 +122,9 @@ public class RunDatastaxNative extends Run {
             ResultSet rs = session.execute(update);
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -142,7 +148,9 @@ public class RunDatastaxNative extends Run {
             session.execute(delete);
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();

@@ -79,7 +79,9 @@ public class RunDatastax extends Run {
             mapper.save(user);
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -97,7 +99,9 @@ public class RunDatastax extends Run {
             UserDatastax user = (UserDatastax) mapper.get(uuid);
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -119,7 +123,9 @@ public class RunDatastax extends Run {
             mapper.save(user);
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -138,7 +144,9 @@ public class RunDatastax extends Run {
             mapper.delete(user);
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();

@@ -70,7 +70,9 @@ public class RunKundera extends Run {
             stopwatch.suspend();
 
             // Wait until next
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -88,7 +90,9 @@ public class RunKundera extends Run {
             UserKundera user = em.find(UserKundera.class, uuid);
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -110,7 +114,9 @@ public class RunKundera extends Run {
             em.merge(user);
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
@@ -129,7 +135,9 @@ public class RunKundera extends Run {
             em.remove(user);
             stopwatch.suspend();
 
-            Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
+                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
+            }
         }
 
         stopwatch.stop();
