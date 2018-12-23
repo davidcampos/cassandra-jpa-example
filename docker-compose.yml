@@ -13,17 +13,17 @@ services:
     networks:
       bridge:
         aliases:
-        - cassandra
+          - cassandra
 
   java:
     image: cassandra-jpa-example
     depends_on:
-    - cassandra
+      - cassandra
     environment:
       EXAMPLE_CASSANDRA_HOST: "cassandra"
       EXAMPLE_CASSANDRA_PORT: "9160"
-      EXAMPLE_REQUEST_WAIT: 0
-      EXAMPLE_ITERATIONS: 10000
-      EXAMPLE_REPETITIONS: 3
+      EXAMPLE_OPERATIONS: 10000
+      EXAMPLE_REPETITIONS: 5
+      EXAMPLE_CYCLES: 1
     networks:
-    - bridge
+      - bridge

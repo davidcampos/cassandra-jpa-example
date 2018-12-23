@@ -11,12 +11,14 @@ import org.apache.logging.log4j.Logger;
 
 public class Commons {
 
-
-    public final static int ITERATIONS = System.getenv("EXAMPLE_ITERATIONS") != null ?
-            Integer.parseInt(System.getenv("EXAMPLE_ITERATIONS")) : 1000;
+    public final static int OPERATIONS = System.getenv("EXAMPLE_OPERATIONS") != null ?
+            Integer.parseInt(System.getenv("EXAMPLE_OPERATIONS")) : 1000;
 
     public final static int REPETITIONS = System.getenv("EXAMPLE_REPETITIONS") != null ?
             Integer.parseInt(System.getenv("EXAMPLE_REPETITIONS")) : 5;
+
+    public final static int CYCLES = System.getenv("EXAMPLE_CYCLES") != null ?
+            Integer.parseInt(System.getenv("EXAMPLE_CYCLES")) : 5;
 
     public static List<UUID> uuids = generateUUIDs();
 
@@ -26,12 +28,9 @@ public class Commons {
     public final static String EXAMPLE_CASSANDRA_PORT = System.getenv("EXAMPLE_CASSANDRA_PORT") != null ?
             System.getenv("EXAMPLE_CASSANDRA_PORT") : "9160";
 
-    public final static long EXAMPLE_REQUEST_WAIT = System.getenv("EXAMPLE_REQUEST_WAIT") != null ?
-            Long.parseLong(System.getenv("EXAMPLE_REQUEST_WAIT")) : 3;
-
     public static List<UUID> generateUUIDs() {
         List<UUID> uuids = new ArrayList<>();
-        for (int i = 0; i < Commons.ITERATIONS * Commons.REPETITIONS; i++) {
+        for (int i = 0; i < Commons.OPERATIONS * Commons.REPETITIONS; i++) {
             uuids.add(UUID.randomUUID());
         }
         return uuids;

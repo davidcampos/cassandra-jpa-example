@@ -61,8 +61,8 @@ public class RunAchilles extends Run {
     public StopWatch write(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
 
             UserAchilles user = new UserAchilles(
                     uuid,
@@ -78,10 +78,6 @@ public class RunAchilles extends Run {
                     .insert(user)
                     .execute();
             stopwatch.suspend();
-
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();
@@ -92,16 +88,12 @@ public class RunAchilles extends Run {
     public StopWatch read(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
 
             Commons.resumeOrStartStopWatch(stopwatch);
             UserAchilles user = manager.crud().findById(uuid).get();
             stopwatch.suspend();
-
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();
@@ -112,8 +104,8 @@ public class RunAchilles extends Run {
     public StopWatch update(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
             UserAchilles user = users.get(uuid);
             user.setFirstName(user.getFirstName() + "___u");
             user.setLastName(user.getLastName() + "___u");
@@ -122,10 +114,6 @@ public class RunAchilles extends Run {
             Commons.resumeOrStartStopWatch(stopwatch);
             manager.crud().update(user).execute();
             stopwatch.suspend();
-
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();
@@ -136,17 +124,13 @@ public class RunAchilles extends Run {
     public StopWatch delete(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
             UserAchilles user = users.get(uuid);
 
             Commons.resumeOrStartStopWatch(stopwatch);
             manager.crud().delete(user).execute();
             stopwatch.suspend();
-
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();

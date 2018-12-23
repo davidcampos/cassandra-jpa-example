@@ -55,8 +55,8 @@ public class RunDatastaxNative extends Run {
     public StopWatch write(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
 
             Insert insert = QueryBuilder
                     .insertInto("example", "user")
@@ -69,10 +69,6 @@ public class RunDatastaxNative extends Run {
             Commons.resumeOrStartStopWatch(stopwatch);
             session.execute(insert);
             stopwatch.suspend();
-
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();
@@ -83,8 +79,8 @@ public class RunDatastaxNative extends Run {
     public StopWatch read(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
 
             Select.Where select = QueryBuilder
                     .select("id", "first_name", "last_name", "city")
@@ -94,10 +90,6 @@ public class RunDatastaxNative extends Run {
             Commons.resumeOrStartStopWatch(stopwatch);
             ResultSet rs = session.execute(select);
             stopwatch.suspend();
-
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();
@@ -108,8 +100,8 @@ public class RunDatastaxNative extends Run {
     public StopWatch update(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
 
             Update.Where update = QueryBuilder
                     .update("example", "user")
@@ -121,10 +113,6 @@ public class RunDatastaxNative extends Run {
             Commons.resumeOrStartStopWatch(stopwatch);
             ResultSet rs = session.execute(update);
             stopwatch.suspend();
-
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();
@@ -135,8 +123,8 @@ public class RunDatastaxNative extends Run {
     public StopWatch delete(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
 
             Delete.Where delete = QueryBuilder
                     .delete()
@@ -147,10 +135,6 @@ public class RunDatastaxNative extends Run {
 
             session.execute(delete);
             stopwatch.suspend();
-
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();

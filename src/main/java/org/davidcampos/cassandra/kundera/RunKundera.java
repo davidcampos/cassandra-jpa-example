@@ -51,9 +51,9 @@ public class RunKundera extends Run {
     public StopWatch write(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
             // Get UUID
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
 
             // Create user
             UserKundera user = new UserKundera(
@@ -68,11 +68,6 @@ public class RunKundera extends Run {
             Commons.resumeOrStartStopWatch(stopwatch);
             em.persist(user);
             stopwatch.suspend();
-
-            // Wait until next
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();
@@ -83,16 +78,12 @@ public class RunKundera extends Run {
     public StopWatch read(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
 
             Commons.resumeOrStartStopWatch(stopwatch);
             UserKundera user = em.find(UserKundera.class, uuid);
             stopwatch.suspend();
-
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();
@@ -103,8 +94,8 @@ public class RunKundera extends Run {
     public StopWatch update(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
             UserKundera user = users.get(uuid);
             user.setFirstName(user.getFirstName() + "___u");
             user.setLastName(user.getLastName() + "___u");
@@ -113,10 +104,6 @@ public class RunKundera extends Run {
             Commons.resumeOrStartStopWatch(stopwatch);
             em.merge(user);
             stopwatch.suspend();
-
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();
@@ -127,17 +114,13 @@ public class RunKundera extends Run {
     public StopWatch delete(int repetition) throws InterruptedException {
         StopWatch stopwatch = new StopWatch();
 
-        for (int i = 0; i < Commons.ITERATIONS; i++) {
-            UUID uuid = Commons.uuids.get(repetition * Commons.ITERATIONS + i);
+        for (int i = 0; i < Commons.OPERATIONS; i++) {
+            UUID uuid = Commons.uuids.get(repetition * Commons.OPERATIONS + i);
             UserKundera user = users.get(uuid);
 
             Commons.resumeOrStartStopWatch(stopwatch);
             em.remove(user);
             stopwatch.suspend();
-
-            if (Commons.EXAMPLE_REQUEST_WAIT > 0) {
-                Thread.sleep(Commons.EXAMPLE_REQUEST_WAIT);
-            }
         }
 
         stopwatch.stop();

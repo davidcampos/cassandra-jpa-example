@@ -17,7 +17,7 @@ abstract public class Run {
     }
 
     public void run() throws InterruptedException {
-        for (int i = 0; i < Commons.REPETITIONS; i++) {
+        for (int i = 0; i < Commons.CYCLES; i++) {
             Commons.uuids = Commons.generateUUIDs();
             clean();
 
